@@ -48,7 +48,7 @@ def main():
 
 def load_hic_for_powerlaw(args):
     if args.chr == 'all':
-        chromosomes = ['chr' + str(x) for x in  list(range(1,23))] + ['chrX']
+        chromosomes = ['chr' + str(x) for x in  list(range(1,20))] + ['chrX', 'chrY']
     else:
         chromosomes = args.chr.split(',')
 

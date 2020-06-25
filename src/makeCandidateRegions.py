@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import argparse
 import os
+import pyranges as pr
 from peaks import *
 import traceback
 from tools import write_params

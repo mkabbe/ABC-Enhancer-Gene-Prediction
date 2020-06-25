@@ -29,9 +29,9 @@ def get_hic_file(chromosome, hic_dir, allow_vc=True, hic_type="juicebox"):
 def hic_exists(file):
     if not os.path.exists(file):
         return False
-    elif file.endswith('gz'):
+   #elif file.endswith('gz'):
         #gzip file still have some size. This is a hack
-        return (os.path.getsize(file) > 100)
+       # return (os.path.getsize(file) > 100)
     else:
         return (os.path.getsize(file) > 0)
 
@@ -52,7 +52,7 @@ def load_hic(hic_file, hic_norm_file, hic_is_vc, hic_type, hic_resolution, tss_h
                             apply_diagonal_bin_correction = apply_diagonal_bin_correction)
         #HiC = juicebox_to_bedpe(HiC, chromosome, args)
     elif hic_type == 'bedpe':
-        HiC = pd.read_csv(hic_file, sep="\t", names = ['chr1','x1','x2','chr2','y1','y2','name','hic_contact'])
+        HiC = pd.read_csv(hic_file, sep="\t", names = ['chr1','x1','x2','chr2','y1','y2','hic_contact'])
 
     return HiC
 
@@ -77,7 +77,7 @@ def process_hic(hic_mat, hic_norm_file, hic_is_vc, resolution, tss_hic_contribut
         temp.data = np.nan_to_num(temp.data, copy=False)
         sums = temp.sum(axis = 0)
         sums = sums[~np.isnan(sums)]
-        assert(np.max(sums[sums > 0])/np.min(sums[sums > 0]) < 1.001)
+       # assert(np.max(sums[sums > 0])/np.min(sums[sums > 0]) < 1.001)
         mean_sum = np.mean(sums[sums > 0])
 
         if abs(mean_sum - 1) < .001:

@@ -17,7 +17,7 @@ def parseargs():
 def main(args):
 
     if args.chromosomes == "all":
-        chromosomes = list(range(1,23)) + ['X']
+        chromosomes = list(range(1,20)) + ['X','Y']
     else:
         chromosomes = args.chromosomes.split(",")
 
@@ -32,7 +32,7 @@ def main(args):
         print(command)
         out = subprocess.getoutput(command)
         if not args.skip_gzip: 
-            run_command("gzip {0}/chr{1}.KRobserved".format(outdir, chromosome))
+            run_command("gzip {0}chr{1}.KRobserved".format(outdir, chromosome))
 
         ## Download KR norm file
         command = args.juicebox + " dump norm KR {0} {1} BP {3} {2}/chr{1}.KRnorm".format(args.hic_file, chromosome, outdir, args.resolution)
@@ -47,7 +47,7 @@ def main(args):
             print(command)
             out = subprocess.getoutput(command)
             if not args.skip_gzip:
-                run_command("gzip {0}/chr{1}.RAWobserved".format(outdir, chromosome))
+                run_command("gzip {0}chr{1}.RAWobserved".format(outdir, chromosome))
 
 if __name__ == '__main__':
     args = parseargs()
